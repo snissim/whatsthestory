@@ -11,7 +11,7 @@ namespace LBI.WhatsTheStory.Tests
     [TestClass]
     public class DatastoreTests
     {
-        [TestMethod]
+        [TestMethod, Ignore]
         public void WriteStockQuotes()
         {
             var target = new YahooFinance();

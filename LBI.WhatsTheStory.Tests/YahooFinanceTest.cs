@@ -10,7 +10,7 @@ namespace LBI.WhatsTheStory.Tests
     [TestClass]
     public class YahooFinanceTest
     {
-        [TestMethod]
+        [TestMethod, Ignore]
         public void GetHistoricalDailyStockQuotesTest()
         {
             var target = new YahooFinance();
