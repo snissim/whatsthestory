@@ -21,11 +21,6 @@ namespace LBI.WhatsTheStory.Web.Controllers
             };
         }
 
-        public ActionResult Tests()
-        {
-            return Json(new string[] { "test1", "test2", "test3", "test4" }, JsonRequestBehavior.AllowGet);
-        }
-
         public ActionResult StockPrices(string id)
         {
             var datastore = new GoogleCloudDatastore("Pogo");
@@ -36,7 +31,8 @@ namespace LBI.WhatsTheStory.Web.Controllers
             {
                 var prices = session.Query<DailyStockQuote>()
                     .Where(t => t.Symbol == symbol)
-                    .ToList();
+                    .ToList()
+                    .OrderBy(t => t.Date); // GCD is throwing an error when trying to filter and order...
 
                 return Json(prices, JsonRequestBehavior.AllowGet);
             }
@@ -60,8 +56,6 @@ namespace LBI.WhatsTheStory.Web.Controllers
         public ActionResult AddAwardAverage(GpcAwardAverage postModel)
         {
             var datastore = new GoogleCloudDatastore("Pogo");
-
-            postModel.Id = Guid.NewGuid().ToString();
 
             using (var session = datastore.OpenSession())
             {

@@ -11,6 +11,7 @@
         <table class="table" id="quotes">
             <thead>
                 <tr>
+                    <th>Date</th>
                     <th>Open</th>
                     <th>High</th>
                     <th>Low</th>
@@ -20,6 +21,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="quote in quotes">
+                    <td>{{quote.ParsedDate}}</td>
                     <td>{{quote.Open}}</td>
                     <td>{{quote.High}}</td>
                     <td>{{quote.Low}}</td>
