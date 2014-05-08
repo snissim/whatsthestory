@@ -127,6 +127,7 @@
     <Content Include="app\partials\dashboard.html" />
     <Content Include="app\partials\splash.html" />
     <Content Include="Global.asax" />
+    <Content Include="index.html" />
     <Content Include="lib\ui-bootstrap-tpls-0.11.0.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
