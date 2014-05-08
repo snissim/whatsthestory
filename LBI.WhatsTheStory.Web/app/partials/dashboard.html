@@ -1,4 +1,40 @@
-﻿<tabset>
-    <tab heading="Stock Prices">Static content</tab>
-    <tab heading="News">News</tab>
+﻿<div class="form-group">
+    <select class="form-control" id="client-select">
+        <option>[Select Client]</option>
+        <option value="mcdonalds">McDonalds</option>
+        <option value="coca-cola">Coca-Cola</option>
+    </select>
+</div>
+<tabset>
+    <tab heading="Financial Performance"></tab>
+    <tab heading="Stock Price">
+        <table class="table" id="quotes">
+            <thead>
+                <tr>
+                    <th>Open</th>
+                    <th>High</th>
+                    <th>Low</th>
+                    <th>Close</th>
+                    <th>Volume</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="quote in quotes">
+                    <td>{{quote.Open}}</td>
+                    <td>{{quote.High}}</td>
+                    <td>{{quote.Low}}</td>
+                    <td>{{quote.Close}}</td>
+                    <td>{{quote.Volume}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </tab>
+    <tab heading="Social Sentiment"></tab>
+    <tab heading="Analysts"></tab>
+    <tab heading="Marketing/Media Spend"></tab>
+    <tab heading="Search and Social Performance"></tab>
+    <tab heading="Threats"></tab>
+    <tab heading="Awards">
+        <button class="btn btn-default" ng-click="addAward()">Add award</button>
+    </tab>
 </tabset>

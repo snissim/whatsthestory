@@ -14,6 +14,10 @@ storyApp.config(['$routeProvider',
           templateUrl: '/app/partials/dashboard.html',
           controller: 'DashboardCtrl'
       }).
+      when('/dashboard/:clientId', {
+          templateUrl: '/app/partials/dashboard.html',
+          controller: 'DashboardCtrl'
+      }).
       when('/phones/:phoneId', {
           templateUrl: 'partials/phone-detail.html',
           controller: 'PhoneDetailCtrl'

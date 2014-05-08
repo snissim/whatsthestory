@@ -37,6 +37,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CodeProse.Pogo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\pogo-debug\CodeProse.Pogo.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -119,6 +123,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="app\js\app.js" />
     <Content Include="app\js\controllers.js" />
+    <Content Include="app\partials\add-award.html" />
     <Content Include="app\partials\dashboard.html" />
     <Content Include="app\partials\splash.html" />
     <Content Include="Global.asax" />
@@ -141,6 +146,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LBI.WhatsTheStory.Domain\LBI.WhatsTheStory.Domain.csproj">
+      <Project>{5079743F-B2C0-433E-BCB1-EF7EDD3AFD10}</Project>
+      <Name>LBI.WhatsTheStory.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
