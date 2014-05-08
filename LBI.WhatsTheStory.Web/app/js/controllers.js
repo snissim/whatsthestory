@@ -19,8 +19,6 @@ storyControllers.controller('DashboardCtrl', function ($scope, $http, $log, $mod
         });
     }
 
-    $scope.items = ['item1', 'item2', 'item3'];
-
     $scope.addAward = function () {
 
         var modalInstance = $modal.open({
@@ -28,30 +26,37 @@ storyControllers.controller('DashboardCtrl', function ($scope, $http, $log, $mod
             controller: 'AddAwardCtrl',
             //            size: size,
             resolve: {
-                items: function () {
-                    return $scope.items;
+                award: function () {
+                    return {
+                        adsScored: $scope.adsScored,
+                        sevenPlusAds: $scope.sevenPlusAds,
+                        gpcAverage: $scope.gpcAverage
+                    };
                 }
             }
         });
 
-        modalInstance.result.then(function (one, two) {
-            console.log(one, two);
+        modalInstance.result.then(function (award) {
+            // just trying to log it right now
+            console.log(award);
         }, function () {
             $log.info('Modal dismissed at: ' + new Date());
         });
     };
 });
 
-storyControllers.controller('AddAwardCtrl', function ($scope, $modalInstance, items) {
-    $scope.items = items;
-    $scope.selected = {
-        item: $scope.items[0]
-    };
-    $scope.one = 9;
-    $scope.two = 9;
+storyControllers.controller('AddAwardCtrl', function ($scope, $modalInstance, award) {
+    // setting default values b/c it seems like I have to declare $scope vars in order to use them later
+    $scope.adsScored = 0;
+    $scope.sevenPlusAds = 0;
+    $scope.gpcAverage = 0.0;
 
     $scope.ok = function () {
-        $modalInstance.close($scope.one, $scope.two);
+        award.adsScored = $scope.adsScored;
+        award.sevenPlusAds = $scope.sevenPlusAds;
+        award.gpcAverage = $scope.gpcAverage;
+
+        $modalInstance.close(award);
     };
 
     $scope.cancel = function () {
