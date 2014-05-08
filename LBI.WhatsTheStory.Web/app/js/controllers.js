@@ -14,8 +14,12 @@ storyControllers.controller('DashboardCtrl', function ($scope, $http, $log, $mod
 
     $scope.setClient = function (clientId) {
         $http.get('/data/stockprices/' + clientId).success(function (data) {
-            console.log('got new data');
+            //            console.log('got new data');
             $scope.quotes = data;
+        });
+
+        $http.get('/data/awardaverages/' + clientId).success(function (data) {
+            $scope.awardAverages = data;
         });
     }
 
@@ -23,40 +27,28 @@ storyControllers.controller('DashboardCtrl', function ($scope, $http, $log, $mod
 
         var modalInstance = $modal.open({
             templateUrl: '/app/partials/add-award.html',
-            controller: 'AddAwardCtrl',
-            //            size: size,
-            resolve: {
-                award: function () {
-                    return {
-                        adsScored: $scope.adsScored,
-                        sevenPlusAds: $scope.sevenPlusAds,
-                        gpcAverage: $scope.gpcAverage
-                    };
-                }
-            }
+            controller: 'AddAwardCtrl'
         });
 
         modalInstance.result.then(function (award) {
-            // just trying to log it right now
             console.log(award);
+            $http.post('/data/addawardaverage', award).success(function () {
+                console.log('added successfully');
+                $scope.awardAverages.push(award);
+            });
         }, function () {
             $log.info('Modal dismissed at: ' + new Date());
         });
     };
 });
 
-storyControllers.controller('AddAwardCtrl', function ($scope, $modalInstance, award) {
-    // setting default values b/c it seems like I have to declare $scope vars in order to use them later
-    $scope.adsScored = 0;
-    $scope.sevenPlusAds = 0;
-    $scope.gpcAverage = 0.0;
+storyControllers.controller('AddAwardCtrl', function ($scope, $modalInstance) {
+    $scope.award = { AdsScored: null, SevenPlusAds: null, GpcAverage: null };
 
     $scope.ok = function () {
-        award.adsScored = $scope.adsScored;
-        award.sevenPlusAds = $scope.sevenPlusAds;
-        award.gpcAverage = $scope.gpcAverage;
+        $scope.award.Company = $("#client-select").val();
 
-        $modalInstance.close(award);
+        $modalInstance.close($scope.award);
     };
 
     $scope.cancel = function () {

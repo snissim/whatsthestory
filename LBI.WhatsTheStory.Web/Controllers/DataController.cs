@@ -42,10 +42,26 @@ namespace LBI.WhatsTheStory.Web.Controllers
             }
         }
 
+        public ActionResult AwardAverages(string id)
+        {
+            var datastore = new GoogleCloudDatastore("Pogo");
+
+            using (var session = datastore.OpenSession())
+            {
+                var awards = session.Query<GpcAwardAverage>()
+                    .Where(t => t.Company == id)
+                    .ToList();
+
+                return Json(awards, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         [HttpPost]
         public ActionResult AddAwardAverage(GpcAwardAverage postModel)
         {
             var datastore = new GoogleCloudDatastore("Pogo");
+
+            postModel.Id = Guid.NewGuid().ToString();
 
             using (var session = datastore.OpenSession())
             {

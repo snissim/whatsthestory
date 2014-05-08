@@ -35,6 +35,22 @@
     <tab heading="Search and Social Performance"></tab>
     <tab heading="Threats"></tab>
     <tab heading="Awards">
-        <button class="btn btn-default" ng-click="addAward()">Add award</button>
+        <div class="form-group"><button class="btn btn-default" ng-click="addAward()">Add award</button></div>
+        <table class="table" id="awards">
+            <thead>
+                <tr>
+                    <th>Ads scored</th>
+                    <th># of 7+ ads</th>
+                    <th>GPC average</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="award in awardAverages">
+                    <td>{{award.AdsScored}}</td>
+                    <td>{{award.SevenPlusAds}}</td>
+                    <td>{{award.GpcAverage}}</td>
+                </tr>
+            </tbody>
+        </table>
     </tab>
 </tabset>

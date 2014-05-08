@@ -7,6 +7,8 @@ namespace LBI.WhatsTheStory.Domain
 {
     public class GpcAwardAverage
     {
+        public string Id { get; set; }
+
         public string Company { get; set; }
 
         public int AdsScored { get; set; }
