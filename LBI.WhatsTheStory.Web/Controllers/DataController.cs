@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using CodeProse.Pogo;
 using LBI.WhatsTheStory.Domain;
+using LBI.WhatsTheStory.Domain.Connectors;
 
 namespace LBI.WhatsTheStory.Web.Controllers
 {
@@ -36,6 +37,13 @@ namespace LBI.WhatsTheStory.Web.Controllers
 
                 return Json(prices, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        public ActionResult FinancialNews(string id)
+        {
+            var rss = new GoogleFinanceNews().GetRssFeed(_symbols[id]);
+
+            return Json(rss, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult AwardAverages(string id)

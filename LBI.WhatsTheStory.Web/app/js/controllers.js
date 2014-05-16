@@ -18,16 +18,16 @@ function formatDate(dotnetDate) {
 }
 
 function drawVisualization(data) {
-/*
+    /*
     var data = google.visualization.arrayToDataTable([
-          ['Mon', 20, 28, 38, 45],
-          ['Tue', 31, 38, 55, 66],
-          ['Wed', 50, 55, 77, 80],
-          ['Thu', 77, 77, 66, 50],
-          ['Fri', 68, 66, 22, 15]
+    ['Mon', 20, 28, 38, 45],
+    ['Tue', 31, 38, 55, 66],
+    ['Wed', 50, 55, 77, 80],
+    ['Thu', 77, 77, 66, 50],
+    ['Fri', 68, 66, 22, 15]
     // Treat first row as data as well.
-        ], true);
-*/
+    ], true);
+    */
 
     var datatable = new google.visualization.DataTable();
     datatable.addColumn('date');
@@ -53,7 +53,7 @@ storyControllers.controller('DashboardCtrl', function ($scope, $http, $log, $mod
         var clientId = $(this).val();
 
         if (clientId == "[Select Client]") {
-            $("#quotes tbody tr").remove();
+            $("#financial-news tbody tr").remove();
             $("#awards tbody tr").remove();
         }
         else {
@@ -65,9 +65,9 @@ storyControllers.controller('DashboardCtrl', function ($scope, $http, $log, $mod
         var clientId = $("#client-select").val();
         $http.get('/data/stockprices/' + clientId).success(function (data) {
             //            console.log('got new data');
-//            $.each(data, function (i, quote) {
-//                data[i].ParsedDate = formatDate(quote.Date);
-//            });
+            //            $.each(data, function (i, quote) {
+            //                data[i].ParsedDate = formatDate(quote.Date);
+            //            });
             //$scope.quotes = data;
             drawVisualization(data);
         });
@@ -85,6 +85,13 @@ storyControllers.controller('DashboardCtrl', function ($scope, $http, $log, $mod
 
         $http.get('/data/awardaverages/' + clientId).success(function (data) {
             $scope.awardAverages = data;
+        });
+
+        $http.get('/data/financialnews/' + clientId).success(function (data) {
+            $.each(data, function (i, quote) {
+                data[i].PublishDate = formatDate(quote.PublishDate);
+            });
+            $scope.financialNews = data;
         });
     }
 

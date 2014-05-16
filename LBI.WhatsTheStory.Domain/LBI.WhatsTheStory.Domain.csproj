@@ -56,6 +56,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,6 +65,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connectors\GoogleFinanceNews.cs" />
+    <Compile Include="Connectors\GoogleFinanceNewsRssRecord.cs" />
     <Compile Include="Connectors\YahooFinance.cs" />
     <Compile Include="Connectors\YahooFinanceCsvRecord.cs" />
     <Compile Include="GpcAwardAverage.cs" />

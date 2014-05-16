@@ -32,7 +32,24 @@
             </tbody>
         </table>-->
     </tab>
-    <tab heading="Social Sentiment"></tab>
+    <tab heading="Social Sentiment">
+        <table class="table" id="financial-news">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Headline</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in financialNews">
+                    <td>{{item.PublishDate}}</td>
+                    <td>{{item.Category}}</td>
+                    <td><a target="_blank" href="{{item.Link}}">{{item.Title}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </tab>
     <tab heading="Analysts"></tab>
     <tab heading="Marketing/Media Spend"></tab>
     <tab heading="Search and Social Performance"></tab>
