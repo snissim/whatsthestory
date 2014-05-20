@@ -45,7 +45,7 @@
                 <tr ng-repeat="item in financialNews">
                     <td>{{item.PublishDate}}</td>
                     <td>{{item.Category}}</td>
-                    <td><a target="_blank" href="{{item.Link}}">{{item.Title}}</a></td>
+                    <td><a target="_blank" ng-click="showArticle(item.Link)">{{item.Title}}</a></td>
                 </tr>
             </tbody>
         </table>

@@ -6,6 +6,10 @@ using System.Web.Mvc;
 using CodeProse.Pogo;
 using LBI.WhatsTheStory.Domain;
 using LBI.WhatsTheStory.Domain.Connectors;
+using System.Net;
+using System.IO;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace LBI.WhatsTheStory.Web.Controllers
 {
@@ -44,6 +48,22 @@ namespace LBI.WhatsTheStory.Web.Controllers
             var rss = new GoogleFinanceNews().GetRssFeed(_symbols[id]);
 
             return Json(rss, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ParseArticle(string url)
+        {
+            string parserUrl = "http://boilerpipe-web.appspot.com/extract?output=json&url=" + Url.Encode(url);
+
+            var wr = (HttpWebRequest)HttpWebRequest.Create(parserUrl);
+            var httpResponse = (HttpWebResponse)wr.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                JsonResult jr = new JsonResult();
+                var json = streamReader.ReadToEnd();
+                jr.Data = JsonConvert.DeserializeObject<BoilerPipeResponse>(json);
+                jr.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                return jr;
+            }
         }
 
         public ActionResult AwardAverages(string id)

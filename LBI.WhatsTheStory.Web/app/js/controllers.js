@@ -95,6 +95,21 @@ storyControllers.controller('DashboardCtrl', function ($scope, $http, $log, $mod
         });
     }
 
+    $scope.showArticle = function (url) {
+        url = encodeURIComponent(url);
+        $http.get('/data/parsearticle?url=' + url).success(function (data) {
+            //$log.info(data);
+            if (data.Status == 'success') {
+                var modalInstance = $modal.open({
+                    templateUrl: '/app/partials/view-article.html',
+                    controller: 'ViewArticleCtrl',
+                    resolve: { article: function () { return data.Response; } }
+                });
+                //$log.info(data.Response.Content);
+            }
+        });
+    }
+
     $scope.addAward = function () {
 
         var modalInstance = $modal.open({
@@ -122,6 +137,15 @@ storyControllers.controller('AddAwardCtrl', function ($scope, $modalInstance) {
 
         $modalInstance.close($scope.award);
     };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+});
+
+storyControllers.controller('ViewArticleCtrl', function ($scope, $modalInstance, article) {
+    $scope.article = article;
+    console.log($scope.article);
 
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');

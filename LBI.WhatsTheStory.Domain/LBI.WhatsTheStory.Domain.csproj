@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connectors\BoilerPipeResponse.cs" />
     <Compile Include="Connectors\GoogleFinanceNews.cs" />
     <Compile Include="Connectors\GoogleFinanceNewsRssRecord.cs" />
     <Compile Include="Connectors\YahooFinance.cs" />
