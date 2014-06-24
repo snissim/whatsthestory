@@ -121,12 +121,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="app\js\app.famous.js" />
     <Content Include="app\js\app.js" />
     <Content Include="app\js\controllers.js" />
     <Content Include="app\partials\add-award.html" />
     <Content Include="app\partials\dashboard.html" />
     <Content Include="app\partials\splash.html" />
     <Content Include="app\partials\view-article.html" />
+    <Content Include="css\app.css" />
+    <Content Include="famous-home.html" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="lib\ui-bootstrap-tpls-0.11.0.min.js" />

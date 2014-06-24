@@ -1,0 +1,35 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Mirrors</title>
+    <meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- shims for backwards compatibility -->
+    <script type="text/javascript" src="//code.famo.us/lib/functionPrototypeBind.js"></script>
+    <script type="text/javascript" src="//code.famo.us/lib/classList.js"></script>
+    <script type="text/javascript" src="//code.famo.us/lib/requestAnimationFrame.js"></script>
+    <!-- module loader -->
+    <script type="text/javascript" src="//code.famo.us/lib/require.js"></script>
+    <!-- famous -->
+    <link rel="stylesheet" type="text/css" href="//code.famo.us/famous/0.2/famous.css" />
+    <script type="text/javascript" src="//code.famo.us/famous/0.2/famous.min.js"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- app code -->
+    <link href="css/app.css" type="text/css" rel="Stylesheet" />
+    <script type="text/javascript">
+        require.config({ baseUrl: 'app/js/' });
+        require(['app.famous']);
+    </script>
+</head>
+<body>
+</body>
+</html>
